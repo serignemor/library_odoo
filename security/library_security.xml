@@ -1,0 +1,41 @@
+<odoo>
+
+<record id="library_book_category" model="ir.module.category">
+    <field name="name">Livre</field>
+    <field name="description">Categorie livre</field>
+</record>
+
+<record id="library_group_user" model="res.groups">
+    <field name="name">Utilisateurs de la librairie</field>
+    <field name="category_id" ref="library_book_category"/>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+</record>
+
+    <record id="library_group_manager" model="res.groups">
+        <field name="name">Gestionnaires de la librairie</field>
+        <field name="category_id" ref="library_book_category"/>
+        <field name="implied_ids" eval="[(4, ref('library_group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+    </record>
+
+    <record id="library_group_user_access" model="ir.model.access">
+        <field name="name">Accès utilisateur a la librairie</field>
+        <field name="model_id" ref="model_library_book"/>
+        <field name="group_id" ref="library_group_user"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+
+    <record id="library_group_manager_access" model="ir.model.access">
+        <field name="name">Accès gestionnaire a la librairie</field>
+        <field name="model_id" ref="model_library_book"/>
+        <field name="group_id" ref="library_group_manager"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+
+</odoo>

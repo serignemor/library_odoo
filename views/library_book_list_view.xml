@@ -1,0 +1,19 @@
+<odoo>
+    <record id="library_book_list_view" model="ir.ui.view">
+        <field name="name">library.book.list</field>
+        <field name="model">library.book</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Liste des livres">
+                <field name="name"/>
+                <field name="publication_date"/>
+                <field name="publishing_house"/>
+                <field name="image" widget="image"/>
+                <field name="authors" widget="many2many_tags"/>
+                <field name="isbn"/>
+                <field name="status"/>
+
+            </tree>
+        </field>
+    </record>
+</odoo>
